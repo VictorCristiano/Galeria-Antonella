@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeria da Antonella</title>
+  <link rel="icon" type="image/png" href="/fotos/baby.png" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Yesteryear&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Um álbum online simples, elegante e padronizado para guardar memórias da Antonella." />
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <h1>Galeria da Antonella</h1>
+            <p class="subtitle">Um espaço para guardar os momentos dessa linda princesa 💖</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="filters">
+            <label for="filter">Filtrar por:</label>
+            <select id="filter">
+                <option value="all">Todas</option>
+                <option value="1m">1 Mês</option>
+                <option value="2m">2 Meses</option>
+            </select>
+        </section>
+
+        <section class="photos-container" id="gallery">
+            <!-- As fotos serão inseridas dinamicamente pelo JS -->
+        </section>
+        <!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" src="" alt="Foto da Antonella">
+</div>
+
+    </main>
+
+    <footer>
+        <p>Feito com ❤️ pelo papai</p>
+    </footer>
+
+    <script src="gallery.js"></script>
+</body>
+</html>
