@@ -21,7 +21,10 @@ const photos = [
   { src: "https://i.postimg.cc/PrQZ1Jsk/a-27.jpg", category: "1m" },    
   { src: "https://i.postimg.cc/VNDbpVsZ/a-20.jpg", category: "1m" },    
   { src: "https://i.postimg.cc/qgVt2fQq/a-21.jpg", category: "1m" },    
-  { src: "https://i.postimg.cc/fTd3vbGb/a-30.jpg", category: "1m" },    
+  { src: "https://i.postimg.cc/fTd3vbGb/a-30.jpg", category: "1m" }, 
+  { src: "https://i.postimg.cc/wB0g49jZ/20250809-203916-1.jpg", category: "1m" },    
+  { src: "https://i.postimg.cc/0Q4xxZmC/20250809-203823.jpg", category: "1m" },    
+  { src: "https://i.postimg.cc/rwG8W1X8/20250809-203806.jpg", category: "1m" },    
   { src: "https://i.postimg.cc/jddBrWh8/a-6.jpg", category: "1m" },    
   { src: "https://i.postimg.cc/9fGL9VpR/a-7.jpg", category: "1m" },    
   { src: "https://i.postimg.cc/4N6vwwcq/a-24.jpg", category: "1m" },    
@@ -37,40 +40,17 @@ const photos = [
 const gallery = document.getElementById("gallery");
 const filterSelect = document.getElementById("filter");
 
+let currentIndex = 0;
+let filteredPhotos = photos;
+
 // Função para carregar fotos
 function loadPhotos(filter = "all") {
   gallery.innerHTML = ""; // limpa a galeria
 
-  const filteredPhotos =
-    filter === "all"
-      ? photos
-      : photos.filter(photo => photo.category === filter);
+  filteredPhotos =
+    filter === "all" ? photos : photos.filter(photo => photo.category === filter);
 
-  filteredPhotos.forEach(photo => {
-    const img = document.createElement("img");
-    img.src = photo.src;
-    img.alt = "Foto da Antonella";
-    gallery.appendChild(img);
-  });
-}
-
-// Evento de filtro
-filterSelect.addEventListener("change", (e) => {
-  loadPhotos(e.target.value);
-});
-
-// Carrega todas as fotos no início
-loadPhotos();
-
-function loadPhotos(filter = "all") {
-  gallery.innerHTML = ""; // limpa a galeria
-
-  const filteredPhotos =
-    filter === "all"
-      ? photos
-      : photos.filter(photo => photo.category === filter);
-
-  filteredPhotos.forEach(photo => {
+  filteredPhotos.forEach((photo, index) => {
     const img = document.createElement("img");
     img.src = photo.src;
     img.alt = "Foto da Antonella";
@@ -78,16 +58,25 @@ function loadPhotos(filter = "all") {
 
     // Evento para abrir em lightbox
     img.addEventListener("click", () => {
-      lightbox.style.display = "flex";
-      lightboxImg.src = photo.src;
+      currentIndex = index;
+      openLightbox(photo.src);
     });
   });
+}
+
+function openLightbox(src) {
+  lightbox.style.display = "flex";
+  lightboxImg.src = src;
 }
 
 // Selecionar elementos do lightbox
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.querySelector(".lightbox-img");
 const closeBtn = document.querySelector(".lightbox .close");
+
+// NOVO: botões prev/next
+const prevBtn = document.querySelector(".lightbox .prev");
+const nextBtn = document.querySelector(".lightbox .next");
 
 // Fechar lightbox ao clicar no X
 closeBtn.addEventListener("click", () => {
@@ -100,3 +89,39 @@ lightbox.addEventListener("click", (e) => {
     lightbox.style.display = "none";
   }
 });
+
+// Navegar para próxima/prev foto
+nextBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % filteredPhotos.length;
+  lightboxImg.src = filteredPhotos[currentIndex].src;
+});
+
+prevBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+  lightboxImg.src = filteredPhotos[currentIndex].src;
+});
+
+// Também funciona com teclado ← → Esc
+document.addEventListener("keydown", (e) => {
+  if (lightbox.style.display === "flex") {
+    if (e.key === "ArrowRight") {
+      currentIndex = (currentIndex + 1) % filteredPhotos.length;
+      lightboxImg.src = filteredPhotos[currentIndex].src;
+    }
+    if (e.key === "ArrowLeft") {
+      currentIndex = (currentIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+      lightboxImg.src = filteredPhotos[currentIndex].src;
+    }
+    if (e.key === "Escape") {
+      lightbox.style.display = "none";
+    }
+  }
+});
+
+// Evento de filtro
+filterSelect.addEventListener("change", (e) => {
+  loadPhotos(e.target.value);
+});
+
+// Carrega todas as fotos no início
+loadPhotos();

@@ -130,6 +130,26 @@ footer {
   align-items: center;
 }
 
+.lightbox .prev,
+.lightbox .next {
+  position: absolute;
+  top: 50%;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transform: translateY(-50%);
+  padding: 0 10px;
+}
+
+.lightbox .prev { left: 20px; }
+.lightbox .next { right: 20px; }
+
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  color: #d6336c; /* cor principal */
+}
+
 .lightbox-img {
   max-width: 90%;
   max-height: 90%;
