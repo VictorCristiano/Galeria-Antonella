@@ -34,12 +34,12 @@ const photos = [
   { src: "https://i.postimg.cc/1RJ239Pd/antonella2.png", category: "1m" },
   { src: "https://i.postimg.cc/wTrrD01c/antonella3.jpg", category: "1m" },
   { src: "https://i.postimg.cc/8Pc3Fqzz/antonella4.jpg", category: "1m" },
+  { src: "https://i.postimg.cc/K8gHfBLX/antonella5.jpg", category: "1m" }
   { src: "https://i.postimg.cc/hjL51DQj/20250907-172856.jpg", category: "2m" },
   { src: "https://i.postimg.cc/rptbzC85/20250908-133309.jpg", category: "2m" },
   { src: "https://i.postimg.cc/prkc3sZM/20250908-151601.jpg", category: "2m" },
   { src: "https://i.postimg.cc/XJb2JR10/20250908-182533.jpg", category: "2m" },
   { src: "https://i.postimg.cc/J7QFyhWY/IMG-20250911-WA0144.jpg", category: "2m" },
-  { src: "https://i.postimg.cc/K8gHfBLX/antonella5.jpg", category: "1m" }
 ];
 
 const gallery = document.getElementById("gallery");
