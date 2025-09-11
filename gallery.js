@@ -39,7 +39,7 @@ const photos = [
   { src: "https://i.postimg.cc/rptbzC85/20250908-133309.jpg", category: "2m" },
   { src: "https://i.postimg.cc/prkc3sZM/20250908-151601.jpg", category: "2m" },
   { src: "https://i.postimg.cc/XJb2JR10/20250908-182533.jpg", category: "2m" },
-  { src: "https://i.postimg.cc/J7QFyhWY/IMG-20250911-WA0144.jpg", category: "2m" },
+  { src: "https://i.postimg.cc/J7QFyhWY/IMG-20250911-WA0144.jpg", category: "2m" }
 ];
 
 const gallery = document.getElementById("gallery");
